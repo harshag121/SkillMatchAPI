@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Results - SkillMatch</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&family=Inter:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style>
+        body { font-family: Inter, "Noto Sans", sans-serif; }
+        .job-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .job-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .skill-tag {
+            transition: all 0.2s ease;
+        }
+        .skill-tag:hover {
+            transform: scale(1.05);
+        }
+        .animate-progress {
+            animation: progressAnimation 1s ease-out;
+        }
+        @keyframes progressAnimation {
+            from { width: 0%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <!-- Header -->
+            <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f0f2f5] px-10 py-3">
+                <div class="flex items-center gap-4 text-[#111418]">
+                    <div class="size-6">
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M13.8261 17.4264C16.7203 18.1174 20.2244 18.5217 24 18.5217C27.7756 18.5217 31.2797 18.1174 34.1739 17.4264C36.9144 16.7722 39.9967 15.2331 41.3563 14.1648L24.8486 40.6391C24.4571 41.267 23.5429 41.267 23.1514 40.6391L6.64374 14.1648C8.00331 15.2331 11.0856 16.7722 13.8261 17.4264Z"
+                                fill="currentColor"
+                            ></path>
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M39.998 12.236C39.9944 12.2537 39.9875 12.2845 39.9748 12.3294C39.9436 12.4399 39.8949 12.5741 39.8346 12.7175C39.8168 12.7597 39.7989 12.8007 39.7813 12.8398C38.5103 13.7113 35.9788 14.9393 33.7095 15.4811C30.9875 16.131 27.6413 16.5217 24 16.5217C20.3587 16.5217 17.0125 16.131 14.2905 15.4811C12.0012 14.9346 9.44505 13.6897 8.18538 12.8168C8.17384 12.7925 8.16216 12.767 8.15052 12.7408C8.09919 12.6249 8.05721 12.5114 8.02977 12.411C8.00356 12.3152 8.00039 12.2667 8.00004 12.2612C8.00004 12.261 8 12.2607 8.00004 12.2612C8.00004 12.2359 8.0104 11.9233 8.68485 11.3686C9.34546 10.8254 10.4222 10.2469 11.9291 9.72276C14.9242 8.68098 19.1919 8 24 8C28.8081 8 33.0758 8.68098 36.0709 9.72276C37.5778 10.2469 38.6545 10.8254 39.3151 11.3686C39.9006 11.8501 39.9857 12.1489 39.998 12.236ZM4.95178 15.2312L21.4543 41.6973C22.6288 43.5809 25.3712 43.5809 26.5457 41.6973L43.0534 15.223C43.0709 15.1948 43.0878 15.1662 43.104 15.1371L41.3563 14.1648C43.104 15.1371 43.1038 15.1374 43.104 15.1371L43.1051 15.135L43.1065 15.1325L43.1101 15.1261L43.1199 15.1082C43.1276 15.094 43.1377 15.0754 43.1497 15.0527C43.1738 15.0075 43.2062 14.9455 43.244 14.8701C43.319 14.7208 43.4196 14.511 43.5217 14.2683C43.6901 13.8679 44 13.0689 44 12.2609C44 10.5573 43.003 9.22254 41.8558 8.2791C40.6947 7.32427 39.1354 6.55361 37.385 5.94477C33.8654 4.72057 29.133 4 24 4C18.867 4 14.1346 4.72057 10.615 5.94478C8.86463 6.55361 7.30529 7.32428 6.14419 8.27911C4.99695 9.22255 3.99999 10.5573 3.99999 12.2609C3.99999 13.1275 4.29264 13.9078 4.49321 14.3607C4.60375 14.6102 4.71348 14.8196 4.79687 14.9689C4.83898 15.0444 4.87547 15.1065 4.9035 15.1529C4.91754 15.1762 4.92954 15.1957 4.93916 15.2111L4.94662 15.223L4.95178 15.2312ZM35.9868 18.996L24 38.22L12.0131 18.996C12.4661 19.1391 12.9179 19.2658 13.3617 19.3718C16.4281 20.1039 20.0901 20.5217 24 20.5217C27.9099 20.5217 31.5719 20.1039 34.6383 19.3718C35.082 19.2658 35.5339 19.1391 35.9868 18.996Z"
+                                fill="currentColor"
+                            ></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-[#111418] text-xl font-bold leading-tight tracking-[-0.015em]">SkillMatch</h2>
+                </div>
+                <div class="flex flex-1 justify-end gap-8">
+                    <div class="flex items-center gap-9">
+                        <a class="text-[#111418] text-sm font-medium leading-normal hover:text-[#0c7ff2] transition-colors" href="index.html">Home</a>
+                        <a class="text-[#111418] text-sm font-medium leading-normal hover:text-[#0c7ff2] transition-colors" href="upload.html">Upload</a>
+                        <a class="text-[#111418] text-sm font-medium leading-normal hover:text-[#0c7ff2] transition-colors" href="jobs.html">Jobs</a>
+                    </div>
+                    <button
+                        class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-[#f0f2f5] text-[#111418] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5 hover:bg-[#e0e4e9] transition-colors"
+                    >
+                        <div class="text-[#111418]" data-icon="Bell" data-size="20px" data-weight="regular">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                                <path
+                                    d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216ZM48,184c7.7-13.24,16-43.92,16-80a64,64,0,1,1,128,0c0,36.05,8.28,66.73,16,80Z"
+                                ></path>
+                            </svg>
+                        </div>
+                    </button>
+                    <div
+                        class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
+                        style='background-image: url("https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80");'
+                    ></div>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <div class="px-40 flex flex-1 justify-center py-5">
+                <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+                    <div class="flex flex-wrap justify-between gap-3 p-4">
+                        <p class="text-[#111418] tracking-light text-[32px] font-bold leading-tight min-w-72">Resume Match Results</p>
+                        <button
+                            onclick="location.href='upload.html'"
+                            class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#0c7ff2] text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#0a6ad1] transition-colors"
+                        >
+                            <span class="truncate">Try Again</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Resume Summary -->
+                    <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Resume Summary</h3>
+                    <p id="resumeSummary" class="text-[#111418] text-base font-normal leading-normal pb-3 pt-1 px-4">
+                        Loading resume summary...
+                    </p>
+                    
+                    <!-- Job Description Summary -->
+                    <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Job Description Summary</h3>
+                    <p id="jobSummary" class="text-[#111418] text-base font-normal leading-normal pb-3 pt-1 px-4">
+                        Loading job description summary...
+                    </p>
+                    
+                    <!-- Extracted Skills -->
+                    <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Resume Skills</h3>
+                    <div id="resumeSkills" class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+                        <!-- Skills will be populated here -->
+                    </div>
+                    
+                    <!-- Job Skills -->
+                    <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Job Requirements</h3>
+                    <div id="jobSkills" class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+                        <!-- Skills will be populated here -->
+                    </div>
+                    
+                    <!-- Matched Skills -->
+                    <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Matched Skills</h3>
+                    <div id="matchedSkills" class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+                        <!-- Matched skills will be populated here -->
+                    </div>
+                    
+                    <!-- Match Score -->
+                    <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Match Score</h3>
+                    <div class="flex flex-col gap-3 p-4">
+                        <div class="flex gap-6 justify-between">
+                            <p class="text-[#111418] text-base font-medium leading-normal">Overall Match</p>
+                            <p id="matchScore" class="text-[#111418] text-sm font-normal leading-normal">0%</p>
+                        </div>
+                        <div class="rounded bg-[#dbe0e6]">
+                            <div id="progressBar" class="h-2 rounded bg-[#0c7ff2] animate-progress" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Suggested Job Roles -->
+                    <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Suggested Job Role</h3>
+                    <div class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-3 p-4">
+                        <div id="suggestedRole" class="flex flex-1 gap-3 rounded-lg border border-[#dbe0e6] bg-white p-4 items-center">
+                            <div class="text-[#111418]" data-icon="Briefcase" data-size="24px" data-weight="regular">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256">
+                                    <path
+                                        d="M216,56H176V48a24,24,0,0,0-24-24H104A24,24,0,0,0,80,48v8H40A16,16,0,0,0,24,72V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V72A16,16,0,0,0,216,56ZM96,48a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96ZM216,72v41.61A184,184,0,0,1,128,136a184.07,184.07,0,0,1-88-22.38V72Zm0,128H40V131.64A200.19,200.19,0,0,0,128,152a200.25,200.25,0,0,0,88-20.37V200ZM104,112a8,8,0,0,1,8-8h32a8,8,0,0,1,0,16H112A8,8,0,0,1,104,112Z"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <h2 class="text-[#111418] text-base font-bold leading-tight">Loading...</h2>
+                        </div>
+                    </div>
+
+                    <!-- Job Openings -->
+                    <h3 class="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Relevant Job Openings</h3>
+                    <div id="jobOpenings" class="p-4">
+                        <!-- Job openings will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function loadResults() {
+            const resultData = sessionStorage.getItem('matchResult');
+            
+            if (!resultData) {
+                window.location.href = 'upload.html';
+                return;
+            }
+
+            const result = JSON.parse(resultData);
+            console.log('Match Result:', result);
+
+            // Populate summaries
+            document.getElementById('resumeSummary').textContent = result.resume_summary || 'No resume summary available.';
+            document.getElementById('jobSummary').textContent = result.job_summary || 'No job description summary available.';
+
+            // Populate skills
+            populateSkills('resumeSkills', result.resume_skills || [], '#f0f2f5');
+            populateSkills('jobSkills', result.job_skills || [], '#f0f2f5');
+            populateSkills('matchedSkills', result.matched_skills || [], '#e6f7ff');
+
+            // Update match score
+            const matchScore = Math.round(result.match_score || 0);
+            document.getElementById('matchScore').textContent = `${matchScore}%`;
+            document.getElementById('progressBar').style.width = `${matchScore}%`;
+
+            // Update suggested role
+            const suggestedRoleElement = document.getElementById('suggestedRole').querySelector('h2');
+            suggestedRoleElement.textContent = result.suggested_role || 'No suggestion available';
+
+            // Populate job openings
+            populateJobOpenings(result.job_openings || []);
+        }
+
+        function populateSkills(containerId, skills, bgColor) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+
+            if (skills.length === 0) {
+                container.innerHTML = '<p class="text-[#60758a] text-sm p-4">No skills found.</p>';
+                return;
+            }
+
+            skills.forEach(skill => {
+                const skillElement = document.createElement('div');
+                skillElement.className = `flex flex-1 gap-3 rounded-lg border border-[#dbe0e6] p-4 items-center skill-tag`;
+                skillElement.style.backgroundColor = bgColor;
+                skillElement.innerHTML = `
+                    <h2 class="text-[#111418] text-base font-bold leading-tight capitalize">${skill}</h2>
+                `;
+                container.appendChild(skillElement);
+            });
+        }
+
+        function populateJobOpenings(jobOpenings) {
+            const container = document.getElementById('jobOpenings');
+            container.innerHTML = '';
+
+            if (jobOpenings.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center p-8 border border-[#dbe0e6] rounded-lg">
+                        <p class="text-[#60758a] text-base">No job openings found at the moment.</p>
+                        <p class="text-[#60758a] text-sm mt-2">Try adjusting your search criteria or check back later.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            jobOpenings.forEach((job, index) => {
+                const jobCard = document.createElement('div');
+                jobCard.className = 'job-card mb-4 p-6 border border-[#dbe0e6] rounded-lg bg-white hover:shadow-lg transition-all';
+                
+                const matchKeywords = job.match_keywords ? job.match_keywords.slice(0, 3).join(', ') : '';
+                
+                jobCard.innerHTML = `
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex-1">
+                            <h4 class="text-[#111418] text-lg font-bold leading-tight mb-1">${job.title}</h4>
+                            <p class="text-[#60758a] text-sm font-medium">${job.company} • ${job.location}</p>
+                            ${job.salary ? `<p class="text-[#0c7ff2] text-sm font-medium mt-1">${job.salary}</p>` : ''}
+                        </div>
+                        <div class="flex flex-col gap-2 ml-4">
+                            <span class="text-xs text-[#60758a] bg-[#f0f2f5] px-2 py-1 rounded">${job.source}</span>
+                            ${job.posted_date ? `<span class="text-xs text-[#60758a]">${job.posted_date}</span>` : ''}
+                        </div>
+                    </div>
+                    
+                    ${job.snippet ? `<p class="text-[#111418] text-sm leading-normal mb-3">${job.snippet}</p>` : ''}
+                    
+                    ${matchKeywords ? `
+                        <div class="mb-3">
+                            <p class="text-xs text-[#60758a] mb-1">Matching Skills:</p>
+                            <div class="flex flex-wrap gap-1">
+                                ${job.match_keywords.slice(0, 5).map(keyword => 
+                                    `<span class="text-xs bg-[#e6f7ff] text-[#0c7ff2] px-2 py-1 rounded">${keyword}</span>`
+                                ).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+                    
+                    <div class="flex justify-between items-center">
+                        <a 
+                            href="${job.link}" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            class="flex min-w-[84px] max-w-[200px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-8 px-4 bg-[#0c7ff2] text-white text-sm font-medium leading-normal hover:bg-[#0a6ad1] transition-colors"
+                        >
+                            <span class="truncate">Apply Now</span>
+                            <svg class="ml-1 w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                            </svg>
+                        </a>
+                        <button 
+                            onclick="saveJob('${job.title}', '${job.company}', '${job.link}')"
+                            class="text-[#60758a] hover:text-[#0c7ff2] transition-colors"
+                            title="Save Job"
+                        >
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                `;
+                
+                container.appendChild(jobCard);
+            });
+
+            // Add summary
+            const summary = document.createElement('div');
+            summary.className = 'mt-6 p-4 bg-[#f8faff] border border-[#e6f7ff] rounded-lg';
+            summary.innerHTML = `
+                <h4 class="text-[#111418] font-medium mb-2">Job Search Summary</h4>
+                <p class="text-[#60758a] text-sm">
+                    Found ${jobOpenings.length} relevant job opportunities matching your skills and experience. 
+                    Click "Apply Now" to visit the job posting directly.
+                </p>
+            `;
+            container.appendChild(summary);
+        }
+
+        function saveJob(title, company, link) {
+            // Simple implementation - could be enhanced with local storage or backend API
+            const jobData = { title, company, link, savedAt: new Date().toISOString() };
+            
+            let savedJobs = JSON.parse(localStorage.getItem('savedJobs') || '[]');
+            
+            // Check if job is already saved
+            const isAlreadySaved = savedJobs.some(job => job.link === link);
+            
+            if (isAlreadySaved) {
+                alert('Job already saved!');
+                return;
+            }
+            
+            savedJobs.push(jobData);
+            localStorage.setItem('savedJobs', JSON.stringify(savedJobs));
+            alert('Job saved successfully!');
+        }
+
+        // Load results on page load
+        document.addEventListener('DOMContentLoaded', loadResults);
+    </script>
+</body>
+</html>

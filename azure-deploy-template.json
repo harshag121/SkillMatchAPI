@@ -1,0 +1,112 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "appName": {
+            "type": "string",
+            "defaultValue": "skillmatch-api",
+            "metadata": {
+                "description": "Name of the Azure App Service"
+            }
+        },
+        "location": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]",
+            "metadata": {
+                "description": "Location for all resources"
+            }
+        },
+        "sku": {
+            "type": "string",
+            "defaultValue": "B1",
+            "allowedValues": [
+                "F1",
+                "B1",
+                "B2",
+                "S1",
+                "S2",
+                "P1V2"
+            ],
+            "metadata": {
+                "description": "The SKU of App Service Plan"
+            }
+        },
+        "geminiApiKey": {
+            "type": "securestring",
+            "metadata": {
+                "description": "Google Gemini API Key"
+            }
+        }
+    },
+    "variables": {
+        "appServicePlanName": "[concat(parameters('appName'), '-plan')]",
+        "webAppName": "[concat(parameters('appName'), '-', uniqueString(resourceGroup().id))]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Web/serverfarms",
+            "apiVersion": "2021-02-01",
+            "name": "[variables('appServicePlanName')]",
+            "location": "[parameters('location')]",
+            "sku": {
+                "name": "[parameters('sku')]"
+            },
+            "kind": "linux",
+            "properties": {
+                "reserved": true
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2021-02-01",
+            "name": "[variables('webAppName')]",
+            "location": "[parameters('location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]"
+            ],
+            "properties": {
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanName'))]",
+                "siteConfig": {
+                    "linuxFxVersion": "PYTHON|3.11",
+                    "appCommandLine": "python -m uvicorn main:app --host 0.0.0.0 --port 8000",
+                    "appSettings": [
+                        {
+                            "name": "SCM_DO_BUILD_DURING_DEPLOYMENT",
+                            "value": "true"
+                        },
+                        {
+                            "name": "GEMINI_API_KEY",
+                            "value": "[parameters('geminiApiKey')]"
+                        },
+                        {
+                            "name": "HOST",
+                            "value": "0.0.0.0"
+                        },
+                        {
+                            "name": "PORT",
+                            "value": "8000"
+                        },
+                        {
+                            "name": "DEBUG",
+                            "value": "false"
+                        },
+                        {
+                            "name": "WEBSITES_PORT",
+                            "value": "8000"
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "outputs": {
+        "webAppUrl": {
+            "type": "string",
+            "value": "[concat('https://', variables('webAppName'), '.azurewebsites.net')]"
+        },
+        "webAppName": {
+            "type": "string", 
+            "value": "[variables('webAppName')]"
+        }
+    }
+}

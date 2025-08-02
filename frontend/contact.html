@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - SkillMatch</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+    <link
+      rel="stylesheet"
+      as="style"
+      onload="this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css2?display=swap&family=Inter:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style>
+        body { font-family: Inter, "Noto Sans", sans-serif; }
+        .contact-card {
+            transition: all 0.3s ease;
+        }
+        .contact-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <!-- Header -->
+            <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#f0f2f5] px-10 py-3">
+                <div class="flex items-center gap-4 text-[#111418]">
+                    <div class="size-6">
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M39.475 21.6262C40.358 21.4363 40.6863 21.5589 40.7581 21.5934C40.7876 21.655 40.8547 21.857 40.8082 22.3336C40.7408 23.0255 40.4502 24.0046 39.8572 25.2301C38.6799 27.6631 36.5085 30.6631 33.5858 33.5858C30.6631 36.5085 27.6632 38.6799 25.2301 39.8572C24.0046 40.4502 23.0255 40.7407 22.3336 40.8082C21.8571 40.8547 21.6551 40.7875 21.5934 40.7581C21.5589 40.6863 21.4363 40.358 21.6262 39.475C21.8562 38.4054 22.4689 36.9657 23.5038 35.2817C24.7575 33.2417 26.5497 30.9744 28.7621 28.762C30.9744 26.5497 33.2417 24.7574 35.2817 23.5037C36.9657 22.4689 38.4054 21.8562 39.475 21.6262ZM4.41189 29.2403L18.7597 43.5881C19.8813 44.7097 21.4027 44.9179 22.7217 44.7893C24.0585 44.659 25.5148 44.1631 26.9723 43.4579C29.9052 42.0387 33.2618 39.5667 36.4142 36.4142C39.5667 33.2618 42.0387 29.9052 43.4579 26.9723C44.1631 25.5148 44.659 24.0585 44.7893 22.7217C44.9179 21.4027 44.7097 19.8813 43.5881 18.7597L29.2403 4.41187C27.8527 3.02428 25.8765 3.02573 24.2861 3.36776C22.6081 3.72863 20.7334 4.58419 18.8396 5.74801C16.4978 7.18716 13.9881 9.18353 11.5858 11.5858C9.18354 13.988 7.18717 16.4978 5.74802 18.8396C4.58421 20.7334 3.72865 22.6081 3.36778 24.2861C3.02574 25.8765 3.02429 27.8527 4.41189 29.2403Z"
+                                fill="currentColor"
+                            ></path>
+                        </svg>
+                    </div>
+                    <h2 class="text-[#111418] text-xl font-bold leading-tight tracking-[-0.015em]">SkillMatch</h2>
+                </div>
+                <div class="flex flex-1 justify-end gap-8">
+                    <div class="flex items-center gap-9">
+                        <a class="text-[#111418] text-sm font-medium leading-normal hover:text-[#0c7ff2] transition-colors" href="index.html">Home</a>
+                        <a class="text-[#111418] text-sm font-medium leading-normal hover:text-[#0c7ff2] transition-colors" href="jobs.html">Jobs</a>
+                        <a class="text-[#111418] text-sm font-medium leading-normal hover:text-[#0c7ff2] transition-colors" href="upload.html">Upload</a>
+                        <a class="text-[#111418] text-sm font-medium leading-normal hover:text-[#0c7ff2] transition-colors" href="about.html">About</a>
+                        <a class="text-[#0c7ff2] text-sm font-medium leading-normal" href="contact.html">Contact</a>
+                    </div>
+                    <button
+                        onclick="location.href='upload.html'"
+                        class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#0c7ff2] text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-[#0a6ad1] transition-colors"
+                    >
+                        <span class="truncate">Get started</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <div class="px-40 flex flex-1 justify-center py-5">
+                <div class="layout-content-container flex flex-col max-w-[960px] flex-1 animate-fade-in">
+                    <div class="flex flex-wrap justify-between gap-3 p-4">
+                        <p class="text-[#111418] tracking-light text-[32px] font-bold leading-tight min-w-72">Contact Us</p>
+                    </div>
+
+                    <!-- Contact Introduction -->
+                    <div class="p-4">
+                        <div class="bg-gradient-to-r from-[#0c7ff2] to-[#0a6ad1] rounded-lg p-8 text-white mb-8">
+                            <h2 class="text-2xl font-bold mb-4">Get in Touch</h2>
+                            <p class="text-lg leading-relaxed">
+                                We value your feedback and are here to assist you. Whether you have questions about our platform, need technical support, or want to share suggestions for improvement, we'd love to hear from you.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Contact Methods -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 p-4 mb-8">
+                        <div class="contact-card bg-white border border-[#dbe0e6] rounded-lg p-6 text-center">
+                            <div class="w-16 h-16 bg-[#e6f7ff] rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-[#0c7ff2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-[#111418] text-lg font-bold mb-2">Email Support</h3>
+                            <p class="text-[#60758a] text-sm mb-3">Get help from our support team</p>
+                            <a href="mailto:support@skillmatch.com" class="text-[#0c7ff2] text-sm font-medium hover:underline">support@skillmatch.com</a>
+                        </div>
+
+                        <div class="contact-card bg-white border border-[#dbe0e6] rounded-lg p-6 text-center">
+                            <div class="w-16 h-16 bg-[#e6f7ff] rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-[#0c7ff2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-[#111418] text-lg font-bold mb-2">Help Center</h3>
+                            <p class="text-[#60758a] text-sm mb-3">Find answers to common questions</p>
+                            <a href="#" class="text-[#0c7ff2] text-sm font-medium hover:underline">Visit Help Center</a>
+                        </div>
+
+                        <div class="contact-card bg-white border border-[#dbe0e6] rounded-lg p-6 text-center">
+                            <div class="w-16 h-16 bg-[#e6f7ff] rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-[#0c7ff2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a2 2 0 01-2-2v-6a2 2 0 012-2h8z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-[#111418] text-lg font-bold mb-2">Live Chat</h3>
+                            <p class="text-[#60758a] text-sm mb-3">Chat with our team in real-time</p>
+                            <button class="text-[#0c7ff2] text-sm font-medium hover:underline">Start Chat</button>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="p-4">
+                        <div class="bg-[#f8faff] border border-[#e6f7ff] rounded-lg p-8">
+                            <h2 class="text-[#111418] text-2xl font-bold mb-6">Send Us a Message</h2>
+                            
+                            <!-- Message Display Area -->
+                            <div id="messageDisplay" class="hidden mb-6 p-4 rounded-lg"></div>
+                            
+                            <form id="contactForm" class="space-y-6">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="form-group">
+                                        <label class="block text-[#111418] text-base font-medium leading-normal mb-2" for="firstName">
+                                            First Name *
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="firstName"
+                                            name="firstName"
+                                            required
+                                            class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] focus:outline-0 focus:ring-2 focus:ring-[#0c7ff2] border border-[#dbe0e6] bg-white h-14 placeholder:text-[#60758a] p-[15px] text-base font-normal leading-normal"
+                                            placeholder="Enter your first name"
+                                        />
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="block text-[#111418] text-base font-medium leading-normal mb-2" for="lastName">
+                                            Last Name *
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="lastName"
+                                            name="lastName"
+                                            required
+                                            class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] focus:outline-0 focus:ring-2 focus:ring-[#0c7ff2] border border-[#dbe0e6] bg-white h-14 placeholder:text-[#60758a] p-[15px] text-base font-normal leading-normal"
+                                            placeholder="Enter your last name"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="block text-[#111418] text-base font-medium leading-normal mb-2" for="email">
+                                        Email Address *
+                                    </label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        required
+                                        class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] focus:outline-0 focus:ring-2 focus:ring-[#0c7ff2] border border-[#dbe0e6] bg-white h-14 placeholder:text-[#60758a] p-[15px] text-base font-normal leading-normal"
+                                        placeholder="Enter your email address"
+                                    />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="block text-[#111418] text-base font-medium leading-normal mb-2" for="subject">
+                                        Subject *
+                                    </label>
+                                    <select
+                                        id="subject"
+                                        name="subject"
+                                        required
+                                        class="form-select flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] focus:outline-0 focus:ring-2 focus:ring-[#0c7ff2] border border-[#dbe0e6] bg-white h-14 placeholder:text-[#60758a] p-[15px] text-base font-normal leading-normal"
+                                    >
+                                        <option value="">Select a subject</option>
+                                        <option value="general">General Inquiry</option>
+                                        <option value="technical">Technical Support</option>
+                                        <option value="billing">Billing Question</option>
+                                        <option value="feature">Feature Request</option>
+                                        <option value="bug">Bug Report</option>
+                                        <option value="partnership">Partnership Inquiry</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="block text-[#111418] text-base font-medium leading-normal mb-2" for="message">
+                                        Message *
+                                    </label>
+                                    <textarea
+                                        id="message"
+                                        name="message"
+                                        required
+                                        rows="6"
+                                        class="form-textarea flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#111418] focus:outline-0 focus:ring-2 focus:ring-[#0c7ff2] border border-[#dbe0e6] bg-white placeholder:text-[#60758a] p-[15px] text-base font-normal leading-normal"
+                                        placeholder="Please describe your inquiry in detail..."
+                                    ></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="flex items-center">
+                                        <input
+                                            type="checkbox"
+                                            id="newsletter"
+                                            name="newsletter"
+                                            class="form-checkbox h-4 w-4 text-[#0c7ff2] focus:ring-[#0c7ff2] border-[#dbe0e6] rounded"
+                                        />
+                                        <span class="ml-2 text-[#60758a] text-sm">
+                                            I would like to receive updates and newsletters from SkillMatch
+                                        </span>
+                                    </label>
+                                </div>
+
+                                <div class="flex justify-start">
+                                    <button
+                                        type="submit"
+                                        id="submitBtn"
+                                        class="flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-[#0c7ff2] text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-[#0a6ad1] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                        <span id="submitText">Send Message</span>
+                                        <div id="submitSpinner" class="hidden ml-2">
+                                            <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Section -->
+                    <div class="p-4 mt-8">
+                        <h2 class="text-[#111418] text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+                        <div class="space-y-4">
+                            <div class="bg-white border border-[#dbe0e6] rounded-lg p-6">
+                                <h3 class="text-[#111418] text-lg font-bold mb-2">How does SkillMatch work?</h3>
+                                <p class="text-[#60758a] text-sm">SkillMatch uses advanced AI to analyze your resume and job descriptions, extracting skills and calculating compatibility scores. It then searches multiple job boards to find relevant opportunities that match your profile.</p>
+                            </div>
+                            
+                            <div class="bg-white border border-[#dbe0e6] rounded-lg p-6">
+                                <h3 class="text-[#111418] text-lg font-bold mb-2">Is my data secure?</h3>
+                                <p class="text-[#60758a] text-sm">Yes, we take data security seriously. All uploads are processed securely, and we never share your personal information with third parties without your explicit consent.</p>
+                            </div>
+                            
+                            <div class="bg-white border border-[#dbe0e6] rounded-lg p-6">
+                                <h3 class="text-[#111418] text-lg font-bold mb-2">What file formats are supported?</h3>
+                                <p class="text-[#60758a] text-sm">We support PDF, DOC, and DOCX formats for both resumes and job descriptions. Maximum file size is 10MB per document.</p>
+                            </div>
+                            
+                            <div class="bg-white border border-[#dbe0e6] rounded-lg p-6">
+                                <h3 class="text-[#111418] text-lg font-bold mb-2">How accurate are the match scores?</h3>
+                                <p class="text-[#60758a] text-sm">Our AI algorithms are continuously trained and improved to provide highly accurate match scores. However, match scores should be used as a guide alongside your own judgment when evaluating job opportunities.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Office Hours -->
+                    <div class="p-4 mt-8">
+                        <div class="bg-[#111418] rounded-lg p-8 text-white">
+                            <h2 class="text-2xl font-bold mb-4">Support Hours</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <h3 class="text-lg font-bold mb-2">Email Support</h3>
+                                    <p class="text-gray-300">24/7 - We typically respond within 2-4 hours</p>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold mb-2">Live Chat</h3>
+                                    <p class="text-gray-300">Monday - Friday: 9:00 AM - 6:00 PM EST</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            const submitSpinner = document.getElementById('submitSpinner');
+            const messageDisplay = document.getElementById('messageDisplay');
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitText.textContent = 'Sending...';
+            submitSpinner.classList.remove('hidden');
+            
+            try {
+                // Simulate API call (replace with actual endpoint)
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                
+                // Show success message
+                showMessage('Thank you for your message! We\'ll get back to you within 24 hours.', 'success');
+                
+                // Reset form
+                this.reset();
+                
+            } catch (error) {
+                console.error('Error sending message:', error);
+                showMessage('Sorry, there was an error sending your message. Please try again or contact us directly at support@skillmatch.com', 'error');
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                submitText.textContent = 'Send Message';
+                submitSpinner.classList.add('hidden');
+            }
+        });
+        
+        function showMessage(message, type) {
+            const messageDisplay = document.getElementById('messageDisplay');
+            const className = type === 'success' ? 'success-message' : 'error-message';
+            
+            messageDisplay.className = `mb-6 p-4 rounded-lg ${className}`;
+            messageDisplay.textContent = message;
+            messageDisplay.classList.remove('hidden');
+            
+            // Scroll to message
+            messageDisplay.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Hide message after 10 seconds
+            setTimeout(() => {
+                messageDisplay.classList.add('hidden');
+            }, 10000);
+        }
+        
+        // Form validation
+        document.querySelectorAll('input[required], select[required], textarea[required]').forEach(field => {
+            field.addEventListener('blur', function() {
+                if (!this.value.trim()) {
+                    this.classList.add('border-red-500');
+                } else {
+                    this.classList.remove('border-red-500');
+                }
+            });
+            
+            field.addEventListener('input', function() {
+                if (this.value.trim()) {
+                    this.classList.remove('border-red-500');
+                }
+            });
+        });
+        
+        // Email validation
+        document.getElementById('email').addEventListener('blur', function() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (this.value && !emailRegex.test(this.value)) {
+                this.classList.add('border-red-500');
+            } else {
+                this.classList.remove('border-red-500');
+            }
+        });
+    </script>
+</body>
+</html>

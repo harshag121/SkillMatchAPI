@@ -1,0 +1,21 @@
+# Azure deployment configuration
+# This file is used by Azure App Service to configure the Python runtime
+
+[build-system]
+python_version = "3.11"
+
+[build]
+# Pre-build commands
+pre_build_commands = [
+    "pip install --upgrade pip"
+]
+
+# Build commands  
+build_commands = [
+    "pip install -r requirements.txt"
+]
+
+# Post-build commands
+post_build_commands = [
+    "python create_dummy_pdfs.py"
+]
